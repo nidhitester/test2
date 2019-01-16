@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -19,9 +20,11 @@ public class Util extends BasePage {
     public static void enter_text(By by ,String text ){
         driver.findElement(by).sendKeys(text);
     }
+
     public static void clear_element(By by){
         driver.findElement(by).clear();
     }
+
     public static String  get_text(By by){
         String text=driver.findElement(by).getText();
         return text;
@@ -43,14 +46,18 @@ public class Util extends BasePage {
     public static void explict_eait(By by){
         WebDriverWait wait=new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.elementToBeClickable(by));
-
-
     }
-    SimpleDateFormat dateFormat=new SimpleDateFormat();
-    Date date=new Date();
-    String date1=dateFormat.format(date);
-    String a=date1;
+    DateFormat dateFormat = new SimpleDateFormat("MMddyyyyHHmmss");
+    //made objet for date
+    Date date = new Date();
+    String date1 = dateFormat.format(date);
 
-
+public static int get_size(By by) {
+    int size = driver.findElements(by).size();
+    return size;
 }
 
+    public static void test_pass_message(){
+        System.out.println("Test Case Passed Successfully");
+    }
+}
